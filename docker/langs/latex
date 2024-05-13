@@ -1,5 +1,0 @@
-# LaTeX
-RUN apt-get install texlive texlive-xetex texlive-lang-cyrillic ttf-mscorefonts-installer -y\
-    && apt autoremove -y\
-    && sed -i -e 's/latex = false/latex = true/g' /root/.config/nvim/lua/plugins/config/config.lua
-
