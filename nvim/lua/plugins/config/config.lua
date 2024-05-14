@@ -1,4 +1,4 @@
 return {
-    python = false,
+    python = true,
     latex = false,
 }

@@ -7,16 +7,13 @@ return {
             local packages = {
             }
 
-            -- custom config add packages
-            local config = require("plugins.config.config")
-
-            if config.python then table.insert(packages, "debugpy") end
+            if LANG_INSTALL_CONFIG.python then table.insert(packages, "debugpy") end
 
             require("mason-nvim-dap").setup({
                 ensure_installed = packages,
                 automatic_installation = true
             })
-        end
+        end,
     },
     {
         "mfussenegger/nvim-dap",
@@ -48,33 +45,35 @@ return {
                     else
                         cb({
                             type = 'executable',
-                            command = '~/.virtualenvs/debugpy/bin/python',
+                            command = os.getenv('HOME') .. '/.virtualenvs/debugpy/bin/python3',
                             args = { '-m', 'debugpy.adapter' },
                             options = {
                                 source_filetype = 'python'
                             },
                         })
                     end
-
-                    dap.configurations.python = {
-                        type = 'python';
-                        request = 'launch';
-                        name = "Launch file";
-
-                        program = "${file}";
-
-                        pythonPath = function ()
-                            local cwd = vim.fn.getcwd()
-                            if vim.fn.executable(cwd .. '/venv/bin/python') == 1 then
-                                return cwd .. '/venv/bin/python'
-                            elseif vim.fn.executable(cwd .. '/.venv/bin/python') == 1 then
-                                return cwd .. '/.venv/bin/pyhon'
-                            else
-                                return '/usr/bin/python'
-                            end
-                        end;
-                    }
                 end
+
+                dap.configurations.python = {
+                    {
+                        type = 'python',
+                        request = 'launch',
+                        name = "Launch file",
+
+                        program = "${file}",
+
+                        pythonPath = function()
+                            local cwd = vim.fn.getcwd()
+                            if vim.fn.executable(cwd .. '/venv/bin/python3') == 1 then
+                                return cwd .. '/venv/bin/python3'
+                            elseif vim.fn.executable(cwd .. '/.venv/bin/python3') == 1 then
+                                return cwd .. '/.venv/bin/python3'
+                            else
+                                return '/usr/bin/python3'
+                            end
+                        end,
+                    }
+                }
             end
 
             dap.listeners.after.event_initialized['dapui_config'] = function()
@@ -90,9 +89,12 @@ return {
             end
 
             vim.keymap.set('n', '<leader>db', ':DapToggleBreakpoint<CR>')
-            vim.keymap.set('n', '<leader>dt', ':DapTerminate<CR>')
             vim.keymap.set('n', '<leader>dc', ':DapContinue<CR>')
-            vim.keymap.set('n', '<leader>do', ':DapStepOver<CR>')
+            vim.keymap.set('n', '<leader>di', ':DapStepInto<CR>')
+            vim.keymap.set('n', '<leader>dI', ':DapInstall<CR>')
+            vim.keymap.set('n', '<leader>do', ':DapStepOut<CR>')
+            vim.keymap.set('n', '<leader>dO', ':DapStepOver<CR>')
+            vim.keymap.set('n', '<leader>dt', ':DapTerminate<CR>')
         end
     },
 }
