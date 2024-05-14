@@ -1,6 +1,9 @@
 # Dockerfiles
 Dockerfile
 
+# configuration file
+local_config.lua
+
 # Lazy files
 lazy-lock.*
 
