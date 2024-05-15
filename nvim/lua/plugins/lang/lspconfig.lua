@@ -1,4 +1,4 @@
-return {
+local packages = {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
@@ -26,7 +26,18 @@ return {
             end
 
             if LANG_INSTALL_CONFIG.python then
-                lspconfig.pylsp.setup({ capabilities = capabilities })
+                lspconfig.pylsp.setup({
+                    capabilities = capabilities,
+                    settings = {
+                        pylsp = {
+                            plugins = {
+                                pycodestyle = {
+                                    ignore = { 'E501', 'W391' }
+                                },
+                            },
+                        },
+                    },
+                })
             end
 
             vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float)
@@ -64,3 +75,23 @@ return {
         end
     },
 }
+
+if LANG_INSTALL_CONFIG.python then
+    table.insert(packages, {
+        "linux-cultist/venv-selector.nvim",
+        dependencies = {
+            'neovim/nvim-lspconfig',
+            'nvim-telescope/telescope.nvim',
+        },
+        config = function()
+            require('venv-selector').setup {}
+        end,
+        event = 'VeryLazy',
+        keys = {
+            { '<leader>vs', '<cmd>VenvSelect<cr>' },
+            { '<leader>vc', '<cmd>VenvSelectCached<cr>' }
+        }
+    })
+end
+
+return packages
