@@ -1,5 +1,21 @@
 return {
     {
+        "ahmedkhalf/project.nvim",
+        config = function()
+            require("project_nvim").setup({
+                patterns = {
+                    ".git",
+                    "_darcs",
+                    ".hg",
+                    ".bzr",
+                    ".svn",
+                    "Makefile",
+                    ".csproj"
+                }
+            })
+        end
+    },
+    {
         'nvim-telescope/telescope-ui-select.nvim',
         config = function()
             require("telescope").setup {
@@ -21,7 +37,7 @@ return {
     },
     {
         'nvim-telescope/telescope.nvim',
-        tag = '0.1.6', 
+        tag = '0.1.6',
         dependencies = {
             'nvim-lua/plenary.nvim'
         },
@@ -31,7 +47,7 @@ return {
             vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
             vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
             vim.keymap.set('n', '<leader>fh', builtin.oldfiles, {})
-            vim.keymap.set('n', '<leader>fp', ':Telescope project<CR>', {})
+            vim.keymap.set('n', '<leader>fp', ':Telescope projects<CR>', {})
             require('telescope').setup {
                 file_ignore_patterns = {
                     "node_modules/.*",

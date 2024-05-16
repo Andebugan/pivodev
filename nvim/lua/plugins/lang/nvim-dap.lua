@@ -8,6 +8,7 @@ return {
             }
 
             if LANG_INSTALL_CONFIG.python then table.insert(packages, "debugpy") end
+            if LANG_INSTALL_CONFIG.csharp then table.insert(packages, "netcoredbg") end
 
             require("mason-nvim-dap").setup({
                 ensure_installed = packages,
@@ -73,6 +74,23 @@ return {
                             end
                         end,
                     }
+                }
+            end
+
+            if LANG_INSTALL_CONFIG.csharp then
+                dap.adapters.coreclr = {
+                    type = 'executable',
+                    command = '$HOME/.local/share/nvim/mason/bin/netcoredbg',
+                    args = {'--interpreter=vscode'}
+                }
+
+                dap.configurations.cs = {
+                    type = "coreclr",
+                    name = "launch = netcoredbg",
+                    request = "launch",
+                    program = function()
+                        return vim.fn.input('path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+                    end,
                 }
             end
 

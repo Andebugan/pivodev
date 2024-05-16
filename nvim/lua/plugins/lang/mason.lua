@@ -13,6 +13,7 @@ return {
                 "lua_ls",
                 "docker_compose_language_service",
                 "dockerls",
+                "bashls",
                 "jsonls",
                 "lua_ls",
                 "yamlls",
@@ -22,6 +23,7 @@ return {
             -- custom config add packages
             if LANG_INSTALL_CONFIG.python then table.insert(packages, "pylsp") end
             if LANG_INSTALL_CONFIG.latex then table.insert(packages, "texlab") end
+            if LANG_INSTALL_CONFIG.csharp then table.insert(packages, "omnisharp") end
 
             require("mason-lspconfig").setup({
                 ensure_installed = packages,

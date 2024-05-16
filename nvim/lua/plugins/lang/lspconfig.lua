@@ -40,6 +40,21 @@ local packages = {
                 })
             end
 
+            if LANG_INSTALL_CONFIG.csharp then
+                local pid = vim.fn.getpid()
+                lspconfig.omnisharp.setup(
+                    {
+                        capabilities = capabilities,
+                        cmd = {
+                            os.getenv('HOME') .. "/.local/share/nvim/mason/bin/omnisharp",
+                            "--languageserver",
+                            "--hostPID",
+                            tostring(pid)
+                        },
+                    }
+                )
+            end
+
             vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float)
             vim.keymap.set('n', '<leader>gp', vim.diagnostic.goto_prev)
             vim.keymap.set('n', '<leader>gn', vim.diagnostic.goto_next)
