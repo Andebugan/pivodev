@@ -1,19 +1,19 @@
 -- basic settings
-vim.o.number = true              -- enable line numbers
-vim.o.ruler = false              -- disable ruler
-vim.o.relativenumber = false     -- enable relative line numbers
+vim.o.number = true               -- enable line numbers
+vim.o.ruler = false               -- disable ruler
+vim.o.relativenumber = false      -- enable relative line numbers
 
-vim.o.tabstop = 4                -- number of spaces a tab represents
-vim.o.shiftwidth = 4             -- number of spaces in each identations
-vim.o.expandtab = true           -- convert tabs to spaces
-vim.o.smartindent = true         -- automatically indent new lines
-vim.o.wrap = true                -- disable line wrapping
-vim.o.linebreak = true           -- enable breaking at words for wrap option
+vim.o.tabstop = 4                 -- number of spaces a tab represents
+vim.o.shiftwidth = 4              -- number of spaces in each identations
+vim.o.expandtab = true            -- convert tabs to spaces
+vim.o.smartindent = true          -- automatically indent new lines
+vim.o.wrap = true                 -- disable line wrapping
+vim.o.linebreak = true            -- enable breaking at words for wrap option
 
-vim.o.termguicolors = true       -- disnable 24-bit RGB colors
+vim.o.termguicolors = true        -- disnable 24-bit RGB colors
 
-vim.o.ignorecase = true          -- set ignore case for search
-vim.o.smartcase = true           -- set smart case for search
+vim.o.ignorecase = true           -- set ignore case for search
+vim.o.smartcase = true            -- set smart case for search
 
 vim.opt.fillchars = { eob = " " } -- disable tilde symbols after EOF
 
@@ -80,3 +80,25 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
+
+vim.keymap.set('n', '<Leader>U', function()
+    print("Fetching configuration...")
+    local result = vim.fn.system({
+        "git",
+        "-C",
+        os.getenv('HOME') .. "/pivodev/",
+        "fetch",
+    })
+    if result ~= "" then
+        print(result)
+        print("Pulling update from repository...")
+        print(vim.fn.system({
+            "git",
+            "-C",
+            os.getenv('HOME') .. "/pivodev/",
+            "pull",
+        }))
+        print("Update complete, reload nvim to apply changes")
+    end
+    print("Fetch complete, no changes")
+end)
