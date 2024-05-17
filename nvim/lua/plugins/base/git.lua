@@ -88,5 +88,10 @@ return {
     },
     {
         'tpope/vim-fugitive',
+        config = function ()
+            vim.keymap.set('n', '<leader>Ga', '<cmd>G add .<cr>')
+            vim.keymap.set('n', '<leader>Gp', '<cmd>G pull <cr>')
+            vim.keymap.set('n', '<leader>GP', '<cmd>G push <cr>')
+        end
     },
 }
