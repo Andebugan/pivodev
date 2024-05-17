@@ -89,7 +89,9 @@ vim.keymap.set('n', '<Leader>U', function()
         os.getenv('HOME') .. "/pivodev/",
         "fetch",
     })
+
     print("Pulling update from repository...")
+
     print(vim.fn.system({
         "git",
         "-C",
