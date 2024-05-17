@@ -10,7 +10,8 @@ return {
                     ".bzr",
                     ".svn",
                     "Makefile",
-                    ".csproj"
+                    ".csproj",
+                    "venv"
                 }
             })
         end
@@ -48,14 +49,18 @@ return {
             vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
             vim.keymap.set('n', '<leader>fh', builtin.oldfiles, {})
             vim.keymap.set('n', '<leader>fp', ':Telescope projects<CR>', {})
-            require('telescope').setup {
-                file_ignore_patterns = {
-                    "node_modules/.*",
-                    ".git/.*",
-                    "tmp/.*",
-                    "cahce/.*"
+            require('telescope').setup({
+                defaults = {
+                    file_ignore_patterns = {
+                        "node_modules/.*",
+                        ".git/.*",
+                        "tmp/.*",
+                        "cahce/.*",
+                        "venv/.*",
+                        "__pycache__/.*"
+                    }
                 },
-            }
+            })
         end
     },
 }
