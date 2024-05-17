@@ -92,7 +92,6 @@ vim.keymap.set('n', '<Leader>U', function()
 
     if result == "" then
         print("Pulling update from repository...")
-
         print(vim.fn.system({
             "git",
             "-C",
