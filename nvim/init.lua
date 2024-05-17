@@ -60,7 +60,11 @@ vim.o.shell = "bash"                                             -- change termi
 -- lazy.nvim setup
 -- for correct symbol rendering Nerd Font should be installed (me have chosen Hack Mono you do you)
 
-LANG_INSTALL_CONFIG = require("plugins.config.local_config")
+if pcall(require, "plugins.config.local_config") then
+    LANG_INSTALL_CONFIG = require("plugins.config.local_config")
+else
+    LANG_INSTALL_CONFIG = require("plugins.config.config")
+end
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
