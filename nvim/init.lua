@@ -90,13 +90,17 @@ vim.keymap.set('n', '<Leader>U', function()
         "fetch",
     })
 
-    print("Pulling update from repository...")
+    if result == "" then
+        print("Pulling update from repository...")
 
-    print(vim.fn.system({
-        "git",
-        "-C",
-        os.getenv('HOME') .. "/pivodev/",
-        "pull",
-    }))
-    print("Update complete, reload nvim to apply changes")
+        print(vim.fn.system({
+            "git",
+            "-C",
+            os.getenv('HOME') .. "/pivodev/",
+            "pull",
+        }))
+        print("Update complete, reload nvim to apply changes")
+    else
+        print("No updates")
+    end
 end)
