@@ -4,10 +4,11 @@ return {
     config = function()
         require('toggleterm').setup()
 
-        vim.keymap.set('n', '<leader>tt', '<cmd>ToggleTerm<cr>', {})
-        vim.keymap.set('n', '<leader>tm', '<cmd>ToggleTerm name=main<cr>', {})
-        vim.keymap.set('n', '<leader>tg', '<cmd>ToggleTerm name=git<cr>', {})
-        vim.keymap.set('n', '<leader>ts', '<cmd>TermSelect<cr>', {})
+        vim.keymap.set('n', '<leader>Th', '<cmd>ToggleTerm direction=horizontal<cr>', {})
+        vim.keymap.set('n', '<leader>Tv', '<cmd>ToggleTerm direction=vertical<cr>', {})
+        vim.keymap.set('n', '<leader>Tf', '<cmd>ToggleTerm direction=float<cr>', {})
+        vim.keymap.set('n', '<leader>Tt', '<cmd>ToggleTerm direction=tab<cr>', {})
+        vim.keymap.set('n', '<leader>Ts', '<cmd>TermSelect<cr>', {})
 
         local trim_spaces = true
         vim.keymap.set("v", "<space>s", function()
