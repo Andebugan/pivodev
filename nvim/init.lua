@@ -84,6 +84,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
 
+-- pull config update from repo
 vim.keymap.set('n', '<Leader>U', function()
     print("Fetching configuration...")
     local result = vim.fn.system({
