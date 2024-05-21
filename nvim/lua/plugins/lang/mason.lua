@@ -24,6 +24,8 @@ return {
             if LANG_INSTALL_CONFIG.python then table.insert(packages, "pylsp") end
             if LANG_INSTALL_CONFIG.latex then table.insert(packages, "texlab") end
             if LANG_INSTALL_CONFIG.csharp then table.insert(packages, "omnisharp") end
+            if LANG_INSTALL_CONFIG.html then table.insert(packages, "html") end
+            if LANG_INSTALL_CONFIG.css then table.insert(packages, "cssls") end
 
             require("mason-lspconfig").setup({
                 ensure_installed = packages,

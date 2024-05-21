@@ -58,6 +58,17 @@ local packages = {
                 )
             end
 
+            if LANG_INSTALL_CONFIG.css then
+                lspconfig.cssls.setup({ capabilities = capabilities })
+            end
+
+            if LANG_INSTALL_CONFIG.html then
+                lspconfig.html.setup({
+                    capabilities = capabilities,
+                    filetypes = { "html", "templ" },
+                })
+            end
+
             vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float)
             vim.keymap.set('n', '<leader>gp', vim.diagnostic.goto_prev)
             vim.keymap.set('n', '<leader>gn', vim.diagnostic.goto_next)

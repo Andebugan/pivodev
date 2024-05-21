@@ -1,5 +1,7 @@
 return {
     python = false,
     latex = false,
-    csharp = false
+    csharp = false,
+    css = false,
+    html = false
 }
