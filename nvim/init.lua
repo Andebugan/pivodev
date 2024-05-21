@@ -87,12 +87,12 @@ require("lazy").setup("plugins")
 -- pull config update from repo
 vim.keymap.set('n', '<Leader>U', function()
     print("Fetching configuration...")
-    local result = vim.fn.system({
+    print(vim.fn.system({
         "git",
         "-C",
         os.getenv('HOME') .. "/pivodev/",
         "fetch",
-    })
+    }))
     print("Pulling update from repository...")
     print(vim.fn.system({
         "git",
