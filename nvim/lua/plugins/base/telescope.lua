@@ -11,7 +11,8 @@ return {
                     ".svn",
                     "Makefile",
                     ".csproj",
-                    "venv"
+                    "venv",
+                    "note.tex"
                 }
             })
         end
@@ -33,7 +34,9 @@ return {
     {
         'nvim-telescope/telescope-project.nvim',
         config = function()
-            require("telescope").load_extension('project')
+            local telescope = require("telescope")
+            telescope.setup()
+            telescope.load_extension('project')
         end
     },
     {
