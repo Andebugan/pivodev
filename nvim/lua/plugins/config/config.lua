@@ -3,5 +3,6 @@ return {
     latex = false,
     csharp = false,
     css = false,
-    html = false
+    html = false,
+    js = false,
 }

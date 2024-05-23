@@ -69,6 +69,12 @@ local packages = {
                 })
             end
 
+            if LANG_INSTALL_CONFIG.js then
+                lspconfig.quick_lint_js.setup({
+                    capabilities = capabilities,
+                })
+            end
+
             vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float)
             vim.keymap.set('n', '<leader>gp', vim.diagnostic.goto_prev)
             vim.keymap.set('n', '<leader>gn', vim.diagnostic.goto_next)
@@ -115,7 +121,6 @@ if LANG_INSTALL_CONFIG.python then
         config = function()
             require('venv-selector').setup {}
         end,
-        event = 'VeryLazy',
         keys = {
             { '<leader>vs', '<cmd>VenvSelect<cr>' },
             { '<leader>vc', '<cmd>VenvSelectCached<cr>' }

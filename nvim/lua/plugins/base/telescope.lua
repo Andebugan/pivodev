@@ -51,6 +51,7 @@ return {
             vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
             vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
             vim.keymap.set('n', '<leader>fr', builtin.oldfiles, {})
+            vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
             vim.keymap.set('n', '<leader>fp', ':Telescope projects<CR>', {})
             require('telescope').setup({
                 defaults = {
@@ -61,6 +62,15 @@ return {
                         "cahce/.*",
                         "venv/.*",
                         "__pycache__/.*"
+                    }
+                },
+                pickers = {
+                    buffers = {
+                        mappings = {
+                            n = {
+                                ["d"] = "delete_buffer",
+                            }
+                        }
                     }
                 },
             })
