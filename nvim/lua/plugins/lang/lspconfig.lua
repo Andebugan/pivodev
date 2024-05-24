@@ -70,9 +70,6 @@ local packages = {
             end
 
             if LANG_INSTALL_CONFIG.js then
-                lspconfig.quick_lint_js.setup({
-                    capabilities = capabilities,
-                })
             end
 
             vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float)
