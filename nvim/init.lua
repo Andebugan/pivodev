@@ -37,7 +37,6 @@ vim.keymap.set('n', '<Leader>bn', '<cmd>bnext<cr>')     -- next buffer
 vim.keymap.set('n', '<Leader>bp', '<cmd>bprevious<cr>') -- previous buffer
 vim.keymap.set('n', '<Leader>bf', '<cmd>bfirst<cr>')    -- first buffer
 vim.keymap.set('n', '<Leader>bl', '<cmd>blast<cr>')     -- last buffer
-vim.keymap.set('n', '<Leader>bs', '<cmd>buffers<cr>')   -- show buffers
 vim.keymap.set('n', '<Leader>br', '<cmd>brewind<cr>')   -- go to first buffer in list
 vim.keymap.set('n', '<Leader>bm', '<cmd>bmodified<cr>') -- go to next modified buffer
 vim.keymap.set('n', '<Leader>bu', '<cmd>bunload<cr>')   -- unload buffer
