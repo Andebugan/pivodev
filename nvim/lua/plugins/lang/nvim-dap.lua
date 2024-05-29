@@ -57,11 +57,11 @@ return {
 
                 dap.configurations.python = {
                     {
-                        type = 'python',
-                        request = 'launch',
-                        name = "Launch file",
+                        type = 'python';
+                        request = 'launch';
+                        name = "Launch file";
 
-                        program = "${file}",
+                        program = "${file}";
 
                         pythonPath = function()
                             local cwd = vim.fn.getcwd()
@@ -72,7 +72,7 @@ return {
                             else
                                 return '/usr/bin/python3'
                             end
-                        end,
+                        end;
                     }
                 }
             end
@@ -81,7 +81,7 @@ return {
                 dap.adapters.coreclr = {
                     type = 'executable',
                     command = '$HOME/.local/share/nvim/mason/bin/netcoredbg',
-                    args = {'--interpreter=vscode'}
+                    args = { '--interpreter=vscode' }
                 }
 
                 dap.configurations.cs = {
