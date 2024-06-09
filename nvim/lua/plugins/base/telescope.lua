@@ -61,7 +61,8 @@ return {
                         "tmp/.*",
                         "cahce/.*",
                         "venv/.*",
-                        "__pycache__/.*"
+                        "__pycache__/.*",
+                        "*.aux"
                     }
                 },
                 pickers = {
