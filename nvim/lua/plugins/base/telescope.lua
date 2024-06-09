@@ -62,7 +62,9 @@ return {
                         "cahce/.*",
                         "venv/.*",
                         "__pycache__/.*",
-                        "*.aux"
+                        ".aux",
+                        ".toc",
+                        ".bbl"
                     }
                 },
                 pickers = {
