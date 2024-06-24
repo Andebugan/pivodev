@@ -47,8 +47,8 @@ vim.keymap.set('n', '<Ledaer>bd!', '<cmd>bdelete!<cr>') -- force delete buffer
 vim.keymap.set('n', '<Leader>bw', '<cmd>bwipeout<cr>')  -- wipe buffer
 
 -- misc keymaps
-vim.keymap.set('n', '<Leader>cc', '<cmd>clo<cr>')   -- close current window
-vim.keymap.set('n', '<Leader>hh', '<cmd>noh<cr>')   -- hide highlight
+vim.keymap.set('n', '<Leader>cc', '<cmd>clo<cr>') -- close current window
+vim.keymap.set('n', '<Leader>hh', '<cmd>noh<cr>') -- hide highlight
 
 -- cyrillic qwerty langmap
 vim.o.langmap =
