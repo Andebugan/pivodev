@@ -22,6 +22,14 @@ local packages = {
     },
 }
 
+vim.keymap.set('n', '<Leader>ntr', '<cmd>Neotest run<cr>')
+vim.keymap.set('n', '<Leader>nto', '<cmd>Neotest output<cr>')
+vim.keymap.set('n', '<Leader>ntp', '<cmd>Neotest output-panel<cr>')
+vim.keymap.set('n', '<Leader>nta', '<cmd>Neotest attach<cr>')
+vim.keymap.set('n', '<Leader>ntj', '<cmd>Neotest jump<cr>')
+vim.keymap.set('n', '<Leader>ntt', '<cmd>Neotest stop<cr>') -- terminate
+vim.keymap.set('n', '<Leader>nts', '<cmd>Neotest summary<cr>')
+
 if LANG_INSTALL_CONFIG.csharp then
     table.insert(packages, {
         "Issafalcon/neotest-dotnet",
