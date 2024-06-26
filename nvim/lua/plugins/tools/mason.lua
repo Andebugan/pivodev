@@ -26,6 +26,7 @@ return {
             if LANG_INSTALL_CONFIG.csharp then table.insert(packages, "omnisharp") end
             if LANG_INSTALL_CONFIG.html then table.insert(packages, "html") end
             if LANG_INSTALL_CONFIG.css then table.insert(packages, "cssls") end
+            if LANG_INSTALL_CONFIG.dbtools then table.insert(packages, "sqlls") end
 
             require("mason-lspconfig").setup({
                 ensure_installed = packages,

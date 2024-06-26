@@ -72,6 +72,12 @@ local packages = {
             if LANG_INSTALL_CONFIG.js then
             end
 
+            if LANG_INSTALL_CONFIG.dbtools then
+                lspconfig.sqlls.setup({
+                    capabilities = capabilities,
+                })
+            end
+
             vim.keymap.set('n', '<leader>df', vim.diagnostic.open_float)
             vim.keymap.set('n', '<leader>gp', vim.diagnostic.goto_prev)
             vim.keymap.set('n', '<leader>gn', vim.diagnostic.goto_next)
