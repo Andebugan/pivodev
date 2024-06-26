@@ -5,4 +5,5 @@ return {
     css = false,
     html = false,
     js = false,
+    dbtools = false,
 }
