@@ -12,7 +12,8 @@ return {
                     "Makefile",
                     ".csproj",
                     "venv",
-                    "note.tex"
+                    "note.tex",
+                    ".nvproj"
                 }
             })
         end
