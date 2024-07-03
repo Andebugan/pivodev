@@ -57,11 +57,11 @@ return {
 
                 dap.configurations.python = {
                     {
-                        type = 'python';
-                        request = 'launch';
-                        name = "Launch file";
+                        type = 'python',
+                        request = 'launch',
+                        name = "Launch file",
 
-                        program = "${file}";
+                        program = "${file}",
 
                         pythonPath = function()
                             local cwd = vim.fn.getcwd()
@@ -72,7 +72,7 @@ return {
                             else
                                 return '/usr/bin/python3'
                             end
-                        end;
+                        end,
                     }
                 }
             end
@@ -85,12 +85,14 @@ return {
                 }
 
                 dap.configurations.cs = {
-                    type = "coreclr",
-                    name = "launch = netcoredbg",
-                    request = "launch",
-                    program = function()
-                        return vim.fn.input('path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
-                    end,
+                    {
+                        type = "coreclr",
+                        name = "launch - netcoredbg",
+                        request = "launch",
+                        program = function()
+                            return vim.fn.input('path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
+                        end,
+                    }
                 }
             end
 
