@@ -3,12 +3,10 @@ return {
         "ahmedkhalf/project.nvim",
         config = function()
             require("project_nvim").setup({
+                detection_methods = { "pattern" },
                 patterns = {
-                    "_darcs",
-                    ".hg",
-                    ".bzr",
-                    ".svn",
-                    ".sln",
+                    ".git",
+                    "go.work",
                     "Makefile",
                     "venv",
                     "note.tex",
@@ -27,16 +25,7 @@ return {
                     }
                 }
             }
-
             require("telescope").load_extension("ui-select")
-        end
-    },
-    {
-        'nvim-telescope/telescope-project.nvim',
-        config = function()
-            local telescope = require("telescope")
-            telescope.setup()
-            telescope.load_extension('project')
         end
     },
     {

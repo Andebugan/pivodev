@@ -50,9 +50,9 @@ vim.keymap.set('n', '<Leader>bw', '<cmd>bwipeout<cr>')  -- wipe buffer
 vim.keymap.set('n', '<Leader>cc', '<cmd>clo<cr>') -- close current window
 vim.keymap.set('n', '<Leader>hh', '<cmd>noh<cr>') -- hide highlight
 
--- session keymaps
-vim.keymap.set('n', '<Leader>ss', '<cmd>mksession! .session.vim<cr>') -- create current session file in cwd
-vim.keymap.set('n', '<Leader>ls', '<cmd>source .session.vim<cr>') -- create current session file in cwd
+vim.keymap.set('n', '<Leader>ss', '<cmd>mksession! .session.vim<cr>') -- session save/create file in cwd
+vim.keymap.set('n', '<Leader>sl', '<cmd>source .session.vim<cr>') -- session load file in cwd
+vim.keymap.set('n', '<Leader>sd', '<cmd>!rm .session.vim<cr>') -- session delete file in cwd
 
 -- cyrillic qwerty langmap
 vim.o.langmap =
