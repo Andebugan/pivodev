@@ -81,7 +81,7 @@ return {
             if LANG_INSTALL_CONFIG.csharp then
                 dap.adapters.coreclr = {
                     type = 'executable',
-                    command = '$HOME/.local/share/nvim/mason/bin/netcoredbg',
+                    command = os.getenv('HOME') .. '/.local/share/nvim/mason/bin/netcoredbg',
                     args = { '--interpreter=vscode' }
                 }
 
@@ -91,7 +91,49 @@ return {
                         name = "launch - netcoredbg",
                         request = "launch",
                         program = function()
-                            return vim.fn.input('path to dll: ', vim.fn.getcwd(), 'file')
+                            local name = vim.fn.input('pattern: ') -- search for dll as patten in /bin/Debug/ folders of the project (relative to cwd)
+                            vim.print('')
+
+                            local command = 'find ' .. vim.fn.getcwd() .. ' -path "*/bin/Debug/*/' .. name .. '.dll"'
+                            local handle = io.popen(command)
+                            if handle == nil then
+                                vim.print("Unable to use find to search for .dll")
+                                return ""
+                            end
+                            local result = handle:read("*a")
+                            handle:close()
+
+                            if result == nil or result == "" then
+                                vim.print("Unable to find .dll");
+                                return ""
+                            end
+
+                            local paths = {}
+                            if string.find(result, "\n") then  -- newlines detected
+                                for s in string.gmatch(result, "[^\n]+") do -- parse lines
+                                    if s ~= "" and s ~= nil then
+                                        vim.print(s)
+                                        table.insert(paths, s)
+                                    end
+                                end
+                            else
+                                vim.print("dll path: " .. result)
+                                return result
+                            end
+
+                            if #paths == 1 then -- if only one result then probably path
+                                for _, v in ipairs(paths) do
+                                    vim.print("dll path: " .. v)
+                                    return v
+                                end
+                            elseif #paths == 0 then
+                                vim.print("Unable to find .dll");
+                                return ""
+                            else
+                                vim.print("Found multiple paths matching patter, first one will be used:")
+                                for _, v in ipairs(paths) do vim.print(v) end
+                                for _, v in ipairs(paths) do return v end
+                            end
                         end,
                     }
                 }
@@ -103,7 +145,7 @@ return {
                     port = '${port}',
                     executable = {
                         command = 'dlv',
-                        args = { 'dap', '-l', '127.0.0.1:${port}'},
+                        args = { 'dap', '-l', '127.0.0.1:${port}' },
                     }
                 }
 
@@ -142,6 +184,8 @@ return {
             dap.listeners.after.event_exited['dapui_config'] = function()
                 dapui.close()
             end
+
+            vim.keymap.set('n', '<leader>dX', function () dapui.close() end)
 
             vim.keymap.set('n', '<leader>db', ':DapToggleBreakpoint<CR>')
             vim.keymap.set('n', '<leader>dc', ':DapContinue<CR>')
