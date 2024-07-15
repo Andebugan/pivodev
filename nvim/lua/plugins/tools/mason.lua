@@ -27,6 +27,7 @@ return {
             if LANG_INSTALL_CONFIG.html then table.insert(packages, "html") end
             if LANG_INSTALL_CONFIG.css then table.insert(packages, "cssls") end
             if LANG_INSTALL_CONFIG.dbtools then table.insert(packages, "sqlls") end
+            if LANG_INSTALL_CONFIG.go then table.insert(packages, "gopls") end
 
             require("mason-lspconfig").setup({
                 ensure_installed = packages,

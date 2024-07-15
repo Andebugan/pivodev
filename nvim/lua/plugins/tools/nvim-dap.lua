@@ -9,6 +9,7 @@ return {
 
             if LANG_INSTALL_CONFIG.python then table.insert(packages, "debugpy") end
             if LANG_INSTALL_CONFIG.csharp then table.insert(packages, "netcoredbg") end
+            if LANG_INSTALL_CONFIG.go then table.insert(packages, "delve") end
 
             require("mason-nvim-dap").setup({
                 ensure_installed = packages,
@@ -92,6 +93,40 @@ return {
                         program = function()
                             return vim.fn.input('path to dll: ', vim.fn.getcwd(), 'file')
                         end,
+                    }
+                }
+            end
+
+            if LANG_INSTALL_CONFIG.go then
+                dap.adapters.delve = {
+                    type = 'server',
+                    port = '${port}',
+                    executable = {
+                        command = 'dlv',
+                        args = { 'dap', '-l', '127.0.0.1:${port}'},
+                    }
+                }
+
+                dap.configurations.go = {
+                    {
+                        type = "delve",
+                        name = "Debug",
+                        request = "launch",
+                        program = "${file}"
+                    },
+                    {
+                        type = "delve",
+                        name = "Debug test",
+                        request = "launch",
+                        mode = "test",
+                        program = "${file}"
+                    },
+                    {
+                        type = "delve",
+                        name = "Debug test (go.mod)",
+                        request = "launch",
+                        mode = "test",
+                        program = "./${relativeFileDirname}"
                     }
                 }
             end

@@ -69,7 +69,10 @@ local packages = {
                 })
             end
 
-            if LANG_INSTALL_CONFIG.js then
+            if LANG_INSTALL_CONFIG.go then
+                lspconfig.gopls.setup({
+                    capabilities = capabilities,
+                })
             end
 
             if LANG_INSTALL_CONFIG.dbtools then

@@ -6,4 +6,5 @@ return {
     html = false,
     js = false,
     dbtools = false,
+    go = false
 }
