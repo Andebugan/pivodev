@@ -4,16 +4,15 @@ return {
         config = function()
             require("project_nvim").setup({
                 patterns = {
-                    ".git",
                     "_darcs",
                     ".hg",
                     ".bzr",
                     ".svn",
+                    ".sln",
                     "Makefile",
-                    ".csproj",
                     "venv",
                     "note.tex",
-                    ".nvproj"
+                    ".session.vim"
                 }
             })
         end
