@@ -45,6 +45,7 @@ vim.keymap.set('n', '<Leader>bu', '<cmd>bunload<cr>')   -- unload buffer
 vim.keymap.set('n', '<Leader>bd', '<cmd>bdelete<cr>')   -- delete buffer
 vim.keymap.set('n', '<Ledaer>bd!', '<cmd>bdelete!<cr>') -- force delete buffer
 vim.keymap.set('n', '<Leader>bw', '<cmd>bwipeout<cr>')  -- wipe buffer
+vim.keymap.set('n', '<Leader>bD', '<cmd>%bd|e#<cr>')    -- close all buffers but last
 
 -- misc keymaps
 vim.keymap.set('n', '<Leader>cc', '<cmd>clo<cr>') -- close current window
