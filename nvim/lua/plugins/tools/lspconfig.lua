@@ -3,13 +3,13 @@ local packages = {
         "neovim/nvim-lspconfig",
         dependencies = {
             "hrsh7th/cmp-nvim-lsp",
+            "ray-x/lsp_signature.nvim",
         },
         config = function()
             local capabilities = require('cmp_nvim_lsp').default_capabilities()
             local lspconfig = require("lspconfig")
 
             -- default
-
             lspconfig.lua_ls.setup({ capabilities = capabilities })
             lspconfig.bashls.setup({ capabilities = capabilities })
             lspconfig.yamlls.setup({ capabilities = capabilities })
@@ -110,11 +110,31 @@ local packages = {
                     vim.keymap.set('n', '<leader>f', function()
                         vim.lsp.buf.format { async = true }
                     end, opts)
+
+                    -- attach lsp signature
+                    local bufnr = ev.buf
+                    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+                    if vim.tbl_contains({ 'null-ls' }, client.name) then -- blacklist lsp
+                        return
+                    end
+                    require("lsp_signature").on_attach({
+                        hint_prefix = {
+                            above = "↙ ", -- when the hint is on the line above the current line
+                            current = "← ", -- when the hint is on the same line
+                            below = "↖ " -- when the hint is on the line below the current line
+                        }
+                    }, bufnr)
                 end
 
             })
         end
     },
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "VeryLazy",
+        opts = {},
+        config = function(_, opts) require('lsp_signature').setup(opts) end
+    }
 }
 
 if LANG_INSTALL_CONFIG.python then
