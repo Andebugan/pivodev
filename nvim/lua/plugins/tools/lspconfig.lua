@@ -118,11 +118,14 @@ local packages = {
                         return
                     end
                     require("lsp_signature").on_attach({
+                        doc_lines = 20,
                         hint_prefix = {
                             above = "↙ ", -- when the hint is on the line above the current line
                             current = "← ", -- when the hint is on the same line
                             below = "↖ " -- when the hint is on the line below the current line
-                        }
+                        },
+                        max_height = 30,
+                        max_width = 90
                     }, bufnr)
                 end
 
